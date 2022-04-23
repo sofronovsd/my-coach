@@ -1,5 +1,7 @@
+import getToken from './getToken';
+
 const getTokenHeader = () => {
-	const accessToken = localStorage.getItem("access-token") || '';
+	const accessToken = getToken() || '';
 	return {
 		'x-access-token': accessToken,
 	};

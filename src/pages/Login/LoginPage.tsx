@@ -5,8 +5,21 @@ import {
 } from 'react';
 import { login } from '../../api/login';
 import { getDashboard } from '../../api/dashboard';
+import {
+	useLocation,
+	useNavigate,
+} from 'react-router-dom';
 
 const LoginPage = () => {
+	const navigate = useNavigate();
+	const location = useLocation();
+	const locationState = location.state as {
+		from: {
+			pathname: string;
+		}
+	};
+	const from = locationState?.from?.pathname || "/";
+	
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	
@@ -21,6 +34,7 @@ const LoginPage = () => {
 						token,
 					} = data;
 					localStorage.setItem("access-token", token);
+					navigate(from, { replace: true });
 				});
 		}
 	}, [username, password]);

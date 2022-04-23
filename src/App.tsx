@@ -7,10 +7,13 @@ const App = () => {
 			<AppRouter>
 				<ul className="flex p-1">
 					<li className="p-1">
-						<Link to="/">Home</Link>
+						<Link to="/home">Home</Link>
 					</li>
 					<li className="p-1">
 						<Link to="/login">Login</Link>
+					</li>
+					<li className="p-1">
+						<Link to="/dashboard">Dashboard</Link>
 					</li>
 				</ul>
 			</AppRouter>
