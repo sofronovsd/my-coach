@@ -8,31 +8,25 @@ import HomePage from '../pages/Home';
 import LoginPage from '../pages/Login';
 import PrivateRoute from './PrivateRoute';
 import DashboardPage from '../pages/Dashboard';
+import MainLayout from '../pages/MainLayout';
 
-type AppRouterProps = {
-	children: JSX.Element | JSX.Element[];
-}
-
-const AppRouter = (props: AppRouterProps) => {
-	const {
-		children,
-	} = props;
-	
+const AppRouter = () => {
 	return (
 		<BrowserRouter>
-			{children}
 			<Routes>
-				<Route path="/home" element={<HomePage />} />
-				<Route path="/login" element={<LoginPage />} />
-				<Route
-					path="/dashboard"
-					element={
-						<PrivateRoute>
-							<DashboardPage />
-						</PrivateRoute>
-					}
-				/>
-				<Route path="/*" element={<Navigate replace to="/home" />} />
+				<Route element={<MainLayout />}>
+					<Route path="/home" element={<HomePage />} />
+					<Route path="/login" element={<LoginPage />} />
+					<Route
+						path="/dashboard"
+						element={
+							<PrivateRoute>
+								<DashboardPage />
+							</PrivateRoute>
+						}
+					/>
+					<Route path="/*" element={<Navigate replace to="/home" />} />
+				</Route>
 			</Routes>
 		</BrowserRouter>
 	);
