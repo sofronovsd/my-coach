@@ -1,14 +1,17 @@
-import Card from '../../components/card';
 import {
 	useCallback,
 	useState,
 } from 'react';
-import { login } from '../../api/login';
-import { getDashboard } from '../../api/dashboard';
 import {
 	useLocation,
 	useNavigate,
 } from 'react-router-dom';
+
+import { login } from '../../api/login';
+import { getDashboard } from '../../api/dashboard';
+import Card from '../../components/card';
+import Button from '../../ui/Button';
+import TextInput from '../../ui/TextInput';
 
 const LoginPage = () => {
 	const navigate = useNavigate();
@@ -18,7 +21,7 @@ const LoginPage = () => {
 			pathname: string;
 		}
 	};
-	const from = locationState?.from?.pathname || "/";
+	const from = locationState?.from?.pathname || '/';
 	
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
@@ -33,7 +36,7 @@ const LoginPage = () => {
 					const {
 						token,
 					} = data;
-					localStorage.setItem("access-token", token);
+					localStorage.setItem('access-token', token);
 					navigate(from, { replace: true });
 				});
 		}
@@ -45,40 +48,39 @@ const LoginPage = () => {
 			});
 	}, []);
 	
-  return (
+	return (
 		<div className="flex flex-col flex-grow flex-grow">
-			<h1 className="text-3xl font-bold underline">
+			<h1 className="text-3xl font-bold underline text-stone-400">
 				Login page
 			</h1>
 			<div className="flex justify-center items-center flex-grow">
 				<Card>
-					<h1>Login form</h1>
-					<input
-						type="text"
+					<h1 className="text-sea font-bold mb-2">
+						Login form
+					</h1>
+					<TextInput
+						className="mb-2"
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
+						rounded
 					/>
-					<input
+					<TextInput
+						className="mb-2"
 						type="password"
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
+						rounded
 					/>
-					<button
-						type="submit"
+					<Button
 						onClick={handleLogin}
+						rounded
 					>
-						login
-					</button>
-					<button
-						type="submit"
-						onClick={handleFetchDashboard}
-					>
-						getDashboard
-					</button>
+						Login
+					</Button>
 				</Card>
 			</div>
 		</div>
-  );
+	);
 };
 
 export default LoginPage;
