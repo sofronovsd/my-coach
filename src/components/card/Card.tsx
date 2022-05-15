@@ -1,7 +1,7 @@
 import { classnames } from '../../utils/classnames';
 
 type CardProps = {
-	children: JSX.Element | JSX.Element[] | string;
+	children: any;
 	className?: string;
 	rounded?: boolean;
 }
