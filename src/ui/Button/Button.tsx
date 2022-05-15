@@ -17,9 +17,9 @@ const Button = (props: ButtonProps) => {
 	
 	return (
 		<button
-			className={classnames(`border-2 p-2 ${className}`, {
+			className={classnames(`w-full border-2 p-2 ${className}`, {
 				'rounded-3xl': rounded,
-				'text-sea bg-stone-400': color === 'primary',
+				'text-sea bg-stone-400 hover:border-amber-700 hover:text-amber-700': color === 'primary',
 				'text-amber-700 bg-sea': color === 'secondary',
 			})}
 			type="button"

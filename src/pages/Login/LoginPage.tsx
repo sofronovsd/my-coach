@@ -7,8 +7,10 @@ import {
 	useNavigate,
 } from 'react-router-dom';
 
-import { login } from '../../api/login';
-import { getDashboard } from '../../api/dashboard';
+import {
+	login,
+	signUp,
+} from '../../api/login';
 import Card from '../../components/card';
 import Button from '../../ui/Button';
 import TextInput from '../../ui/TextInput';
@@ -42,11 +44,21 @@ const LoginPage = () => {
 		}
 	}, [username, password]);
 	
-	const handleFetchDashboard = useCallback(() => {
-		getDashboard()
-			.then(res => {
-			});
-	}, []);
+	const handleSignUp = useCallback(() => {
+		if (username && password) {
+			signUp(username, password)
+				.then(res => {
+					const {
+						data,
+					} = res;
+					const {
+						token,
+					} = data;
+					localStorage.setItem('access-token', token);
+					navigate(from, { replace: true });
+				});
+		}
+	}, [username, password]);
 	
 	return (
 		<div className="flex flex-col flex-grow flex-grow">
@@ -71,12 +83,21 @@ const LoginPage = () => {
 						onChange={(e) => setPassword(e.target.value)}
 						rounded
 					/>
-					<Button
-						onClick={handleLogin}
-						rounded
-					>
-						Login
-					</Button>
+					<div className="flex justify-between">
+						<Button
+							onClick={handleLogin}
+							rounded
+							className="mr-2"
+						>
+							Login
+						</Button>
+						<Button
+							onClick={handleSignUp}
+							rounded
+						>
+							Sign Up
+						</Button>
+					</div>
 				</Card>
 			</div>
 		</div>

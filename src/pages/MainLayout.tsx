@@ -29,7 +29,7 @@ const MainLayout = () => {
 				{token ? (
 					<Button
 						onClick={handleOnLogOut}
-						className="ml-2 p-0 border-none"
+						className="ml-2 p-0 border-none w-fit"
 						color="secondary"
 					>
 						Log out
